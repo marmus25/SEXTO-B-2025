@@ -32,6 +32,7 @@
 
         <h3>Mostrar/Ocultar Columnas</h3>
         <div id="toggleColumns">
+            <button onclick="toggleColumn('Nombre')">Nombre</button>
             <button onclick="toggleColumn('Observación')">Observación</button>
             <button onclick="toggleColumn('Asistencia')">Asistencia</button>
             <button onclick="toggleColumn('Nota')">Nota</button>
@@ -208,18 +209,17 @@
         }
 
         function toggleColumn(columnName) {
-    const headerCells = document.querySelectorAll(`[data-column="${columnName}"]`);
-    const columnIndex = Array.from(headerCells).map(cell => cell.cellIndex)[0]; // Obtén el índice de la columna
-    
-    const rows = document.querySelectorAll("table tr");
-    rows.forEach(row => {
-        const cell = row.children[columnIndex];
-        if (cell) {
-            cell.style.display = (cell.style.display === "none") ? "" : "none";
-        }
-    });
-}
+            const headerCells = document.querySelectorAll(`[data-column="${columnName}"]`);
+            const columnIndex = Array.from(headerCells).map(cell => cell.cellIndex)[0]; // Obtén el índice de la columna
 
+            const rows = document.querySelectorAll("table tr");
+            rows.forEach(row => {
+                const cell = row.children[columnIndex];
+                if (cell) {
+                    cell.style.display = (cell.style.display === "none") ? "" : "none";
+                }
+            });
+        }
 
         // Guardar y cargar datos usando localStorage
         function guardarDatosLocalmente() {

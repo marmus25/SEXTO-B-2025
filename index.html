@@ -208,11 +208,18 @@
         }
 
         function toggleColumn(columnName) {
-            let elements = document.querySelectorAll(`[data-column="${columnName}"]`);
-            elements.forEach(el => {
-                el.classList.toggle("hide");
-            });
+    const headerCells = document.querySelectorAll(`[data-column="${columnName}"]`);
+    const columnIndex = Array.from(headerCells).map(cell => cell.cellIndex)[0]; // Obtén el índice de la columna
+    
+    const rows = document.querySelectorAll("table tr");
+    rows.forEach(row => {
+        const cell = row.children[columnIndex];
+        if (cell) {
+            cell.style.display = (cell.style.display === "none") ? "" : "none";
         }
+    });
+}
+
 
         // Guardar y cargar datos usando localStorage
         function guardarDatosLocalmente() {
